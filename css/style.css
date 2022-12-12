@@ -138,24 +138,24 @@ header {
 .flex-liste li {
 	padding: 0px 14px;
 }
-.btn_connex_h {
+#btn_connex_h {
 	border: 2px solid #238636;
 	border-radius: 50px;
 	height: 45px;
 }
-.btn_connex_h:hover {
+#btn_connex_h:hover {
 	background-color: #e4e4e4;
 }
-.btn_inscri_h {
+#btn_inscri_h {
 	border: 2px solid #238636;
 	background-color: #238636;
 	border-radius: 50px;
 	height: 45px;
 }
-.btn_inscri_h a {
+#btn_inscri_h a {
 	color: #FFF;
 }
-a:hover.btn_inscri_h  {
+a:hover#btn_inscri_h  {
 	background-color: #2EA043;
 	border-radius: 50px;
 }
@@ -171,4 +171,67 @@ a:hover.btn_inscri_h  {
 	#menu-header input:checked + label {color:white}
 	#menu-header input:checked + label:before {content:"\00d7"}
 	#menu-header input:checked ~ ul {display:block}
+}
+
+/*######################################################################*/
+/*#####################################################################*/
+/*#################      I N S C R I P T I O N      ############################*/
+/*######################################################################*/
+/*#####################################################################*/
+
+/********************** DIALOGUE ****************************************/
+
+
+.modal {
+    max-width: 50ch;
+  }
+  
+  .modal::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+
+form {
+	display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .form-control {
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.form-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+
+.btn_submit_inscri {
+	background-color: #8e44ad;
+	border: 2px solid #8e44ad;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
 }
