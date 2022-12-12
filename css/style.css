@@ -124,7 +124,7 @@ header {
 	display: block
 }
 #menu-header ul.sub-menus a:hover{
-	background: #F2F2F2;
+	background: transparent;
 	color: #444444;
 }
 
@@ -139,11 +139,15 @@ header {
 }
 #btn_connex_h {
 	border: 2px solid #238636;
+	color: #238636;
 	border-radius: 50px;
 	height: 45px;
+	font-family: 'Signika Negative', sans-serif; 
+	font-size: 18px;
+	padding: 0px 8px;
 }
 #btn_connex_h:hover {
-	background-color: #e4e4e4;
+	background-color: transparent;
 }
 #btn_inscri_h {
 	border: 2px solid #238636;
@@ -152,6 +156,7 @@ header {
 	height: 45px;
 	font-family: 'Signika Negative', sans-serif; 
 	font-size: 18px;
+	padding: 0px 8px;
 }
 #btn_inscri_h a {
 	color: #FFF;
@@ -208,6 +213,93 @@ a:hover#btn_inscri_h  {
 	justify-content: center;
   }
   .modal::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+
+form {
+	display: flex;
+    flex-direction: column;
+    gap: 1em;
+	padding-top: 55px;
+  }
+  
+  .form-control {
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.form-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+
+.btn_submit_inscri {
+	background-color: #238636;
+	border: 2px solid #238636;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+}
+.btn_submit_inscri:hover {
+	background-color: #2EA043;
+	border: 2px solid #2EA043;
+}
+
+/*######################################################################*/
+/*#####################################################################*/
+/*#################      C O N N E X I O N     ############################*/
+/*######################################################################*/
+/*#####################################################################*/
+
+/********************** DIALOGUE ****************************************/
+
+.modal_2 {
+	width: 45ch;
+	height: 64ch;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	padding: 15px 25px;
+	font-family: 'Signika Negative', sans-serif;
+  }
+  dialog#modal_2 {
+    position: absolute;
+    top: 20%;
+    left: 38%;
+}
+#btn_close_dialog {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 50px;
+	background: transparent;
+	border: 0px solid transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  }
+  .modal_2::backdrop {
     background: rgb(0 0 0 / 0.4);
   }
 

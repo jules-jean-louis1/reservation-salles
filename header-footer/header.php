@@ -12,7 +12,9 @@
                 </nav>
                 <div class="login-header">
                     <ul class="flex-liste">
-                        <li><a href="" id="btn_connex_h">Connexion</a></li>
+                        <li>
+                            <button class="button open-button_2"id="btn_connex_h">Connexion</button>
+                        </li>
                         <li>
                             <button class="button open-button"id="btn_inscri_h" style="color: #FFF;">Crée un compte</button>
                         </li>

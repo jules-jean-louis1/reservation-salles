@@ -1,12 +1,12 @@
 <?php
-$errors = [];
+
 
 if (isset($_POST['submit_sign-in'])) {
-
+    
     $login = $_POST['login'];
     $password = $_POST['password'];
     $password_conf = $_POST['password_conf'];
-    $sql = "INSERT INTO (`login`,`password`) VALUES ('$login','$password');";
+    $sql = "INSERT INTO `utilisateurs` (`login`, `password`) VALUES ('$login','$password');";
     $checkLogin = "SELECT login FROM utilisateurs WHERE login = '$login'; ";
     $rs = mysqli_query($connect,$checkLogin);
     if (mysqli_num_rows($rs) > 0) {
