@@ -14,7 +14,7 @@
                     <ul class="flex-liste">
                         <li><a href="" id="btn_connex_h">Connexion</a></li>
                         <li>
-                            <button  class="button open-button"id="btn_inscri_h" style="color: #FFF;">Crée un compte</button>
+                            <button class="button open-button"id="btn_inscri_h" style="color: #FFF;">Crée un compte</button>
                         </li>
                     </ul>
                 </div>
