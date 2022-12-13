@@ -5,7 +5,7 @@
                 <nav id='menu-header'>
                 <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
                 <ul>
-                    <li><a href='index.php'>Home</a></li>
+                    <li id="logo_link"><a href='index.php'>Reserv'</a></li>
                     <li><a href='http://'>Planning</a></li>
                     <li><a href='http://'>Réservation</a></li>
                 </ul>

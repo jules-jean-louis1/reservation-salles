@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 * {
     box-sizing: border-box;
@@ -11,8 +12,10 @@ ul {
 a {
     text-decoration: none;
 }
-
-
+body {
+	background-color: #FEF2F4;
+	color: #F54D6C;
+}
 
 
 
@@ -30,10 +33,10 @@ a {
 /*######################################################################*/
 /*#####################################################################*/
 header {
-    font-family: 'Signika Negative', sans-serif;
+    font-family: 'EB Garamond', serif;
 }
 .navbar {
-	background-color: #F7F4F0;
+	background-color: #FEF2F4;
 	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 	border-bottom: 1px solid transparent;
 	
@@ -47,7 +50,7 @@ header {
   padding: 0% 6%;
 }
 #menu-header {
-	color: #FFF;
+	color: #F54D6C;
 	height: 60px;
 	border-radius: 0px;
 }
@@ -70,16 +73,16 @@ header {
 	line-height: 60px;
 	padding: 0 14px;
 	text-decoration: none;
-	color: #111;
+	color: #F54D6C;
 	font-size: 18px;
 }
 #menu-header a.dropdown-arrow:after {
 	content: "\25BE";
 	margin-left: 5px;
 }
-#menu-header li a:hover, .flex-liste li a:hover {
-	color: rgb(66, 66, 66);
-}
+/* #menu-header li a:hover, .flex-liste li a:hover {
+
+} */
 #menu-header input {
 	display: none;
 	margin: 0;
@@ -114,7 +117,7 @@ header {
 	width: 100%;
 }
 #menu-header ul.sub-menus a {
-	color: #FFFFFF;
+	color: #F54D6C;
 	font-size: 16px;
 }
 #menu-header li:hover ul.sub-menus {
@@ -122,9 +125,14 @@ header {
 }
 #menu-header ul.sub-menus a:hover{
 	background: transparent;
-	color: #444444;
 }
-
+#logo_link {
+	font-weight: 800;
+	text-transform: capitalize;
+	font-size: 20px;
+	font-style: italic;
+	color: #F54D6C;
+}
 .login-header {
     display: flex;
 }
@@ -137,23 +145,24 @@ header {
 	align-items: center;
 }
 #btn_connex_h {
-	border: 2px solid #238636;
-	color: #238636;
+	border: 2px solid #F54D6C;
+	color: #F54D6C;
 	border-radius: 50px;
 	height: 45px;
-	font-family: 'Signika Negative', sans-serif; 
 	font-size: 18px;
 	padding: 0px 8px;
+	background-color: transparent;
+	font-family: 'EB Garamond', serif;
 }
 #btn_connex_h:hover {
 	background-color: transparent;
 }
 #btn_inscri_h {
-	border: 2px solid #238636;
-	background-color: #238636;
+	border: 2px solid #F54D6C;
+	background-color: #F54D6C;
 	border-radius: 50px;
 	height: 45px;
-	font-family: 'Signika Negative', sans-serif; 
+	font-family: 'EB Garamond', serif; 
 	font-size: 18px;
 	padding: 0px 8px;
 }
