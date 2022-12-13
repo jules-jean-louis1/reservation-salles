@@ -9,6 +9,8 @@ if (isset($_POST['submit_btn'])) {
     $datef = $_POST['date_fin'];
     $id = $_SESSION['id'];
     $sql = "INSERT INTO `reservations` ('titre', 'description','debut','fin','id_utilisateurs') VALUES ('$titre','$descro','$dated','$datef','$id');";
+    $envoyer = mysqli_query($connect, $sql);
+    
 
 }
 
