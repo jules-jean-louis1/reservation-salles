@@ -2,6 +2,7 @@
 session_start();
 include './connect/connect_local.php';
 include './php/inscription.php';
+include './php/connexion.php';
 $errors = [];
 ?>
 

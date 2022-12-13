@@ -33,7 +33,7 @@ header {
     font-family: 'Signika Negative', sans-serif;
 }
 .navbar {
-	background-color: rgba(255,255,255,.96);
+	background-color: #F7F4F0;
 	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 	border-bottom: 1px solid transparent;
 	
@@ -47,7 +47,6 @@ header {
   padding: 0% 6%;
 }
 #menu-header {
-	background: #FFFFFF;
 	color: #FFF;
 	height: 60px;
 	border-radius: 0px;
@@ -71,7 +70,7 @@ header {
 	line-height: 60px;
 	padding: 0 14px;
 	text-decoration: none;
-	color: #238636;
+	color: #111;
 	font-size: 18px;
 }
 #menu-header a.dropdown-arrow:after {
@@ -79,8 +78,7 @@ header {
 	margin-left: 5px;
 }
 #menu-header li a:hover, .flex-liste li a:hover {
-	color: #2EA043;
-	background: #FFFFFF;
+	color: rgb(66, 66, 66);
 }
 #menu-header input {
 	display: none;
@@ -107,7 +105,6 @@ header {
 	height: auto;
 	overflow: hidden;
 	width: 170px;
-	background: #444444;
 	position: absolute;
 	z-index: 99;
 	display: none;
@@ -136,6 +133,8 @@ header {
 }
 .flex-liste li {
 	padding: 0px 14px;
+	display: flex;
+	align-items: center;
 }
 #btn_connex_h {
 	border: 2px solid #238636;
@@ -165,6 +164,19 @@ a:hover#btn_inscri_h  {
 	background-color: #2EA043;
 	border-radius: 50px;
 }
+.flex-liste img {
+	width: 27px;
+}
+#li_a_logo {
+	display: flex;
+	gap: 0.5em;
+	border: 1px solid #111;
+	border-radius: 50px;
+	width: 125px;
+	justify-content: center;
+	height: 48;	
+	align-items: center;
+  }
 
 @media screen and (max-width: 800px){
 	#menu-header {position:relative}
