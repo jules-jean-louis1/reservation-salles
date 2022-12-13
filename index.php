@@ -81,7 +81,17 @@ $errors = [];
                     <?php endforeach; 
                 } else {
                 }?>
-        </div>   
+        </div>
+        <section class="main_sec">
+                <div class="warpper_main">
+                    <div class="container_main">
+                        <div class="sub_container_main">
+                            <h2>Réservation de salles</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+        </section>   
     </main>
 </body>
 </html>
