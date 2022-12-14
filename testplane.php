@@ -16,11 +16,13 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
 
     <table>
         <thead>
-            <?php
-            foreach ($days as $jours) {
-                echo "<tr>".$jours."</tr>";
-            }
-            ?>
+            <tr>
+                <?php
+                foreach ($days as $jours) {
+                    echo "<th>".$jours."</th>";
+                }
+                ?>
+            </tr>
         </thead>
         <tbody>
         <?php
