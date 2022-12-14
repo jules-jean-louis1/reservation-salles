@@ -101,6 +101,7 @@ if(isset($_POST['reserver'])){
 <!----------------- Header----------------->
 <?php include '../header-footer/header.php'?>
 <!----------------- Header----------------->
+<!-- ajoute champs select pour les heure -->
 <main>
     <article class="reserv_warpper">
         <section class="reserv_container">
