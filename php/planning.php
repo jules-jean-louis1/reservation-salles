@@ -1,9 +1,10 @@
 <?php
 session_start();
-$login = $_SESSION['login'];
+include '../connect/connect_local.php';
+$login = isset($_SESSION['login']);
 mysqli_set_charset($connect,"utf8");
 
-$queryPlanning = mysqli_query($connect, "SELECT utilisateurs.login, reservations.titre, reservations.debut, reservations.fin, reservations.type_activité, reservations.id  FROM `utilisateurs` INNER JOIN reservations ON id_utilisateur=utilisateurs.id");
+$queryPlanning = mysqli_query($connect, "SELECT `titre`,`description`, `debut`, `fin`,`login` FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id; ");
 $fetchPlanning = mysqli_fetch_all($queryPlanning, MYSQLI_ASSOC);
 
 
@@ -37,16 +38,6 @@ $fetchPlanning = mysqli_fetch_all($queryPlanning, MYSQLI_ASSOC);
 ?>
  <main>
      <article id="general">
-        <section id="legende">
-                <h3>Légende</h3>
-            <div id="carrés">
-                <span class="leg"><div id="soc"></div><p class="key">social</p></span>
-                <span class="leg"><div id="loi"></div><p class="key">loisirs</p></span>
-                <span class="leg"><div id="sco"></div><p class="key">scolaire</p></span>
-                <span class="leg"><div id="spo"></div><p class="key">sport</p></span>
-                <span class="leg"><div id="fes"></div><p class="key">festivités</p></span>
-            </div>
-        </section>
         <section id="tableau">
             <table>
                 <thead>

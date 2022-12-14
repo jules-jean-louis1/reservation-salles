@@ -13,7 +13,7 @@ a {
     text-decoration: none;
 }
 body {
-	background-color: #FEF2F4;
+	background-color: #FFF;
 	color: #F54D6C;
 }
 
@@ -34,9 +34,10 @@ body {
 /*#####################################################################*/
 header {
     font-family: 'EB Garamond', serif;
+	height: 65px;
 }
 .navbar {
-	background-color: #FEF2F4;
+	background-color: #FFF;
 	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 	border-bottom: 1px solid transparent;
 	
@@ -215,7 +216,8 @@ a:hover#btn_inscri_h  {
 	border: 1px solid transparent;
 	border-radius: 8px;
 	padding: 15px 25px;
-	font-family: 'Signika Negative', sans-serif;
+	font-family: 'EB Garamond', serif;
+	background-color: #fff;
   }
   dialog#modal {
     position: absolute;
@@ -272,10 +274,10 @@ form {
 
 
 .btn_submit_inscri {
-	background-color: #238636;
-	border: 2px solid #238636;
+	background-color: #F54D6C;
+	border: 2px solid #F54D6C;
 	border-radius: 4px;
-	color: #fff;
+	color: #FEF2F4;
 	display: block;
 	font-family: inherit;
 	font-size: 16px;
@@ -284,8 +286,8 @@ form {
 	width: 100%;
 }
 .btn_submit_inscri:hover {
-	background-color: #2EA043;
-	border: 2px solid #2EA043;
+	background-color: #ff0936;
+	border: 2px solid #ff0936;
 }
 
 /*######################################################################*/
@@ -302,7 +304,7 @@ form {
 	border: 1px solid transparent;
 	border-radius: 8px;
 	padding: 15px 25px;
-	font-family: 'Signika Negative', sans-serif;
+	font-family: 'EB Garamond', serif;
   }
   dialog#modal_2 {
     position: absolute;
@@ -343,13 +345,14 @@ form {
 }
 
 .form-control input {
-	border: 2px solid #f0f0f0;
-	border-radius: 4px;
+	border: 2px solid #F54D6C;
+	border-radius: 50px;
 	display: block;
 	font-family: inherit;
 	font-size: 14px;
 	padding: 10px;
 	width: 100%;
+	background: transparent;
 }
 
 .form-control input:focus {
@@ -359,10 +362,10 @@ form {
 
 
 .btn_submit_inscri {
-	background-color: #238636;
-	border: 2px solid #238636;
+	background-color: #F54D6C;
+	border: 2px solid #F54D6C;
 	border-radius: 4px;
-	color: #fff;
+	color: #FEF2F4;
 	display: block;
 	font-family: inherit;
 	font-size: 16px;
@@ -371,6 +374,53 @@ form {
 	width: 100%;
 }
 .btn_submit_inscri:hover {
-	background-color: #2EA043;
-	border: 2px solid #2EA043;
+	background-color: #ff0936;
+	border: 2px solid #ff0936;
 }
+
+
+/*######################################################################*/
+/*#####################################################################*/
+/*################     M A I N - I N D E X    ##########################*/
+/*######################################################################*/
+/*#####################################################################*/
+.main_s1 {
+	height: 90%;
+	display: grid;
+  }
+
+.main_sec {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.warpper_main {
+	display: flex;
+	width: 50vw;
+	height: 65vh;
+	border: 2px solid #F54D6C;
+	border-radius: 6px;
+	padding: 10px 15px;
+}
+.sub_container_main {
+	display: flex;
+	flex-direction: column;
+	gap: 3em;
+  }
+#btn_main_1 {
+	border: 2px solid #F54D6C;
+	border-radius: 6px;
+	padding: 8px 14px;
+	font-family: 'EB Garamond', serif;
+	color: #F54D6C;
+	font-weight: 600;
+}
+
+
+/*#######################################################################*/
+/*######################################################################*/
+/*#################       F O O T E R       ############################*/
+/*######################################################################*/
+/*######################################################################*/
+

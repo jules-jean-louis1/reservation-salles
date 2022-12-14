@@ -1,31 +1,20 @@
 <?php
 session_start();
 // affichage event "SELECT `titre`,`description`, `debut`, `fin`,`login` FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id; "
-if (isset($_POST['submit_btn'])) {
 
-    $titre = $_POST['titre'];
-    $descro = $_POST['message'];
-    $dated = $_POST['date_debut'];
-    $datef = $_POST['date_fin'];
-    $id = $_SESSION['id'];
-    $sql = "INSERT INTO `reservations` ('titre', 'description','debut','fin','id_utilisateurs') VALUES ('$titre','$descro','$dated','$datef','$id');";
-    $envoyer = mysqli_query($connect, $sql);
-    
-
-}
-$login = $_SESSION['login'];  
-        
+$validation = false;
+$login = isset($_SESSION['login']);
+$errors = [];      
 
 if(!empty($_POST)){
     extract($_POST);
-    $validation=true;
+    $validation = true;
   }
 
 if(isset($_POST['reserver'])){
 
-    $titre=$_POST['titre'];
-    $description=$_POST['description'];
-    $type=$_POST['type'];
+    $titre = $_POST['titre'];
+    $description = $_POST['description'];
 
     //Pour transformer le mode d'input - format de date vers celui de sqli afin de permettre plus tard la comparaison entre les deux
         $debut=$_POST['debutdate'];
@@ -55,13 +44,11 @@ if(isset($_POST['reserver'])){
 
     if(empty($titre)){
         $validation = false;
-        $titreVide = "Veuillez rentrer un titre.";
-        echo $titreVide;     
+        $errors['titre']= "Veuillez rentrer un titre.";     
     }
     if(empty($description)){
         $validation = false;
-        $descriptionVide = "Veuillez rentrer une description.";
-        echo $descriptionVide;     
+        $errors['decro'] = "Veuillez rentrer une description.";    
     }
 
     // //pour récupérer les dates afin de vérifier s'il y a disponibilité
@@ -72,35 +59,30 @@ if(isset($_POST['reserver'])){
 
         if($date['debut']==$newformatDebut && $date['fin']==$newformatFin){
                $validation = false;
-               $verifErr = "Le créneaux est indisponible, veuillez-vous référer au planning et choisir un autre créneaux.";
-               echo $verifErr;      
+               $errors['verifdate1'] = "Le créneaux est indisponible, veuillez-vous référer au planning et choisir un autre créneaux.";     
         }
     }
         if($newformatFin < $newformatDebut){
             $validation = false;
-            $timeErr = "La date de fin est antérieure à la date de début, on ne peut remonter dans le temps !";
-            echo $timeErr;
+            $errors['time']= "La date de fin est antérieure à la date de début, on ne peut remonter dans le temps !";
         }elseif (($jourDebut == "Sat" || $jourDebut == "Sun") || ($jourFin == "Sat" || $jourFin == "Sun")){
             $validation=false;
-            $weekendErr = "Vous ne pouvez réserver la salle le week-end.";
-            echo $weekendErr;
+            $errors['date2'] = "Vous ne pouvez réserver la salle le week-end.";
         }elseif($jFin-$jDebut>=1){
             $validation=false;
-            $jourErr = "Vous ne pouvez réserver la salle que pour une heure le même jour.";
-            echo $jourErr;
+            $errors['jours']= "Vous ne pouvez réserver la salle que pour une heure le même jour.";
         }
 
         if(@$heureFin - @$heureDebut > @$uneHeure){
             $validation = false;
-            $heureErr = "Vous ne pouvez réserver la salle plus d'une heure.";
-            echo $heureErr;
+            $errors['heure'] = "Vous ne pouvez réserver la salle plus d'une heure.";
         }
 
     if ($validation){
-        $requestId = mysqli_query($connect, "SELECT `id` FROM `utilisateurs` WHERE `login`='".$login."'");
+        $requestId = mysqli_query($connect, "SELECT `id` FROM `utilisateurs` WHERE `login`='$login'");
         $recupId = mysqli_fetch_assoc($requestId);
         foreach ($recupId as $id){
-            $queryInsert=mysqli_query($connect, "INSERT INTO `reservations`(`titre`, `description`, `debut`, `fin`, `id_utilisateur`, `type_activité`) VALUES ('$titre','$description','$debut','$fin', '$id' ,'$type')");
+            $queryInsert=mysqli_query($connect, "INSERT INTO `reservations`(`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$description','$debut','$fin', '$id')");
         }  
     }
  }
@@ -113,15 +95,18 @@ if(isset($_POST['reserver'])){
         <label for="titre">Titre de l'event</label>
         <input type="text" name="titre" id="log">
         <label for="descro">Déscription de l'event</label>
-        <textarea name="message" id="" cols="30" rows="10"></textarea>
+        <textarea name="description" id="" cols="30" rows="10"></textarea>
         <label for="debut">Début de l'event</label>
-        <input type="datetime-local" name="date_debut" id="" value="" min="2022-12-13T08:00" max="2023-12-13T18:00">
+        <input type="datetime-local" name="debutdate" id="" value="" min="2022-12-13T08:00" max="2023-12-13T18:00">
         <span class="validity"></span>
         <Label for="fin">Fin de l'event</Label>
-        <input type="datetime-local" name="date_fin" id="" min="2022-12-13T08:00" max="2023-12-13T18:00">
+        <input type="datetime-local" name="findate" id="" min="2022-12-13T08:00" max="2023-12-13T18:00">
         <span class="validity"></span>
-        <input type="submit" value="Réserver !" name="submit_btn">
+        <input type="submit" value="Réserver !" name="reserver">
     </div>
     <div class="btn_container">
+        <?php foreach($errors as $message):?>
+                <?php echo htmlspecialchars($message); ?>
+            <?php endforeach; ?>               
     </div>
 </form>
