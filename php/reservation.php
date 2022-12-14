@@ -89,24 +89,46 @@ if(isset($_POST['reserver'])){
 
 ?>
 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Réservation</title>
+</head>
+<body>
+<!----------------- Header----------------->
+<?php include '../header-footer/header.php'?>
+<!----------------- Header----------------->
+<main>
+    <article class="reserv_warpper">
+        <section class="reserv_container">
+            <div class="reserv_form">
+                <form action="" method="post">
+                    <div class="form_reserv">
+                        <label for="titre">Titre de l'event</label>
+                        <input type="text" name="titre" id="log">
+                        <label for="descro">Déscription de l'event</label>
+                        <textarea name="description" id="" cols="30" rows="10"></textarea>
+                        <label for="debut">Début de l'event</label>
+                        <input type="datetime-local" name="debutdate" id="" value="" min="2022-12-13T08:00" max="2023-12-13T18:00">
+                        <span class="validity"></span>
+                        <Label for="fin">Fin de l'event</Label>
+                        <input type="datetime-local" name="findate" id="" min="2022-12-13T08:00" max="2023-12-13T18:00">
+                        <span class="validity"></span>
+                        <input type="submit" value="Réserver !" name="reserver">
+                    </div>
+                    <div class="btn_container">
+                        <?php foreach($errors as $message):?>
+                                <?php echo htmlspecialchars($message); ?>
+                            <?php endforeach; ?>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </article>
+</main>
 
-<form action="" method="post">
-    <div class="form_reserv">
-        <label for="titre">Titre de l'event</label>
-        <input type="text" name="titre" id="log">
-        <label for="descro">Déscription de l'event</label>
-        <textarea name="description" id="" cols="30" rows="10"></textarea>
-        <label for="debut">Début de l'event</label>
-        <input type="datetime-local" name="debutdate" id="" value="" min="2022-12-13T08:00" max="2023-12-13T18:00">
-        <span class="validity"></span>
-        <Label for="fin">Fin de l'event</Label>
-        <input type="datetime-local" name="findate" id="" min="2022-12-13T08:00" max="2023-12-13T18:00">
-        <span class="validity"></span>
-        <input type="submit" value="Réserver !" name="reserver">
-    </div>
-    <div class="btn_container">
-        <?php foreach($errors as $message):?>
-                <?php echo htmlspecialchars($message); ?>
-            <?php endforeach; ?>               
-    </div>
-</form>
+</body>
+</html>
