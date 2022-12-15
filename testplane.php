@@ -1,11 +1,22 @@
 <?php
-$days = ['Jour','Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche'];
-$months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+$days = ['Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche',];
 
 
+$dt = new DateTime;
+if (isset($_GET['year']) && isset($_GET['week'])) {
+    $dt->setISODate($_GET['year'], $_GET['week']);
+} else {
+    $dt->setISODate($dt->format('o'), $dt->format('W'));
+}
+$year = $dt->format('o');
+$week = $dt->format('W');
 
 ?>
-<html lang="en">
+
+
+
+
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,30 +25,55 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
 </head>
 <body>
 
-    <table>
-        <thead>
-            <tr>
-                <?php
-                foreach ($days as $jours) {
-                    echo "<th>".$jours."</th>";
+<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Semaine suivante</a> <!--Previous week-->
+<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Semaine précédente</a> <!--Next week-->
+
+
+
+<table>
+    <thead>
+        <tr>
+            <td>Heure</td>
+            <?php  
+            while ($week == $dt->format('W')) {
+                for ($i=0; isset($days[$i]) ; $i++) { 
+                    $dt->modify('+1 day'); 
+                    echo "<th>".$days[$i]. $dt->format('d M Y')."</th>";
                 }
-                ?>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-            foreach ($days as $jours) {
-                /* echo "<tr>".$jours; */
-                for ($i=8; $i < 19 ; $i++) {
-                    echo "<td>". $i . "</td>";
-                }
-                /* echo "</tr>"; */
+             }
+            ?>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <?php
+            for ($i=8; $i <= 19 ; $i++) {
+                echo "<tr>"; 
+                for ($j=0; $j <= 5 ; $j++) {
+                    echo "<td>".$i.":00"."</td>";
+                    }
+                echo "</tr>"; 
             }
             ?>
-        </tbody>
-    </table>
-
-
+        
+            </tbody>
+</table>
     
 </body>
 </html>
+
+<?php
+function calendar ($col,$row,$week)
+{
+    for ($i=0; $i < $col ; $i++) { 
+        for ($j=0; $j < $row ; $j++) { 
+            if ($i == 0) {
+                $r[$i][] = (string) ($j + 7) . ":00";
+            } else {
+                $date = new DateTime();
+
+            }
+        }
+    }
+}
+?>
