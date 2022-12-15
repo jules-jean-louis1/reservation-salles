@@ -1,91 +1,34 @@
 <?php
 session_start();
+include '../connect/connect_local.php';
 // affichage event "SELECT `titre`,`description`, `debut`, `fin`,`login` FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id; "
 
 $validation = false;
-$login = isset($_SESSION['login']);
-$errors = [];      
+$errors = [];    
 
-if(!empty($_POST)){
-    extract($_POST);
-    $validation = true;
-  }
-
-if(isset($_POST['reserver'])){
-
+if (isset($_POST['reserver'])) {
     $titre = $_POST['titre'];
-    $description = $_POST['description'];
-
-    //Pour transformer le mode d'input - format de date vers celui de sqli afin de permettre plus tard la comparaison entre les deux
-        $debut=$_POST['debutdate'];
-        $time = strtotime($debut);
-    $newformatDebut = date("Y-m-d H:i:s",$time);
-    // Pour empêcher de s'inscrire le samedi et le dimanche 
-    $jourDebut = date('D',$time);
-    //pour empêcher de s'inscrire plus d'un jour
-    $jDebut = date('d',$time);
-    // pour vérifier l'heure par la suite - ne pas dépasser les 1h
-    $heureDebut = date("H:i:s",$time);
-
-
-        $fin=$_POST['findate'];
-        $time1 = strtotime($fin);
-    $newformatFin = date("Y-m-d H:00",$time1);
-    $jourFin = date('D',$time1);
-    $jFin = date('d',$time1);
-    $heureFin = date("H:00",$time1);
-
-    $uneHeure = date("1:00:00");
- 
-
-    // on va d'abord vérifier les erreurs possibles : champs vides, créneaux déjà réservés, plus d'une heure, plus d'un jour, jour de fin antérieur au jour de fin == validation false
-    // si pas d'erreur alors tu me prends l'id de la session ET tu me rentres sa réservation
-
-
-    if(empty($titre)){
-        $validation = false;
-        $errors['titre']= "Veuillez rentrer un titre.";     
-    }
-    if(empty($description)){
-        $validation = false;
-        $errors['decro'] = "Veuillez rentrer une description.";    
-    }
-
-    // //pour récupérer les dates afin de vérifier s'il y a disponibilité
-    $dateVerif=mysqli_query($connect, "SELECT `debut`, `fin` FROM `reservations`");
-    $dateFetch=mysqli_fetch_all($dateVerif, MYSQLI_ASSOC);
-
-    foreach($dateFetch as $date){
-
-        if($date['debut']==$newformatDebut && $date['fin']==$newformatFin){
-               $validation = false;
-               $errors['verifdate1'] = "Le créneaux est indisponible, veuillez-vous référer au planning et choisir un autre créneaux.";     
+    $descro = $_POST['description'];
+    $date = $_POST['date'];
+    $heureD = $_POST['heureD'];
+    $heureF = $_POST['heureF'];
+    $strHD = strtotime($_POST['heureF']);
+    $strHF = strtotime($_POST['heureF']);
+    $id = $_SESSION['id'];
+    $sql = "INSERT INTO `reservations` (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$descro','$date''.$heureD','$date''.$heureF','$id')";
+    $checkHeureD = "SELECT * FROM `reservations` WHERE `debut` = '$date'.'$heureD'"; 
+    if ($heureD <= $heureF) {
+        if ($strHF - $strHD = 3600) {
+            mysqli_query($connect, $sql);
+            $errors['succes'] = "Votre résevation est confirmé pour le " . $date . " de " . $heureD . " à " . $heureF;
+        } else {
+            $errors['fail1'] = "La salle ne peut pas être réserver pour plus d'un heure";
         }
+    } else {
+        $errors['fail'] = "Votre réservation n'a pas était effectué.";
     }
-        if($newformatFin < $newformatDebut){
-            $validation = false;
-            $errors['time']= "La date de fin est antérieure à la date de début, on ne peut remonter dans le temps !";
-        }elseif (($jourDebut == "Sat" || $jourDebut == "Sun") || ($jourFin == "Sat" || $jourFin == "Sun")){
-            $validation=false;
-            $errors['date2'] = "Vous ne pouvez réserver la salle le week-end.";
-        }elseif($jFin-$jDebut>=1){
-            $validation=false;
-            $errors['jours']= "Vous ne pouvez réserver la salle que pour une heure le même jour.";
-        }
-
-        if(@$heureFin - @$heureDebut > @$uneHeure){
-            $validation = false;
-            $errors['heure'] = "Vous ne pouvez réserver la salle plus d'une heure.";
-        }
-
-    if ($validation){
-        $requestId = mysqli_query($connect, "SELECT `id` FROM `utilisateurs` WHERE `login`='$login'");
-        $recupId = mysqli_fetch_assoc($requestId);
-        foreach ($recupId as $id){
-            $queryInsert=mysqli_query($connect, "INSERT INTO `reservations`(`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$description','$debut','$fin', '$id')");
-        }  
-    }
- }
+    
+}
 
 ?>
 
@@ -108,16 +51,43 @@ if(isset($_POST['reserver'])){
             <div class="reserv_form">
                 <form action="" method="post">
                     <div class="form_reserv">
-                        <label for="titre">Titre de l'event</label>
+                        <label for="titre">Titre de l'événement</label>
                         <input type="text" name="titre" id="log">
-                        <label for="descro">Déscription de l'event</label>
+                        <label for="descro">Déscription de l'événement</label>
                         <textarea name="description" id="" cols="30" rows="10"></textarea>
-                        <label for="debut">Début de l'event</label>
-                        <input type="datetime-local" name="debutdate" id="" value="" min="2022-12-13T08:00" max="2023-12-13T18:00">
+                        <label for="debut">Date de l'événement</label>
+                        <input type="date" name="date" id="" value="" min="2022-12-13T08:00">
                         <span class="validity"></span>
-                        <Label for="fin">Fin de l'event</Label>
-                        <input type="datetime-local" name="findate" id="" min="2022-12-13T08:00" max="2023-12-13T18:00">
-                        <span class="validity"></span>
+                        <label for="heure">Heure de début</label>
+                        <select name="heureD" id="">
+                            <option value="8:00">8:00</option>
+                            <option value="9:00">9:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="19:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                        </select>
+                        <label for="heure">Heure de fin</label>
+                        <select name="heureF" id="">
+                            <option value="8:00">8:00</option>
+                            <option value="9:00">9:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="19:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                        </select>
                         <input type="submit" value="Réserver !" name="reserver">
                     </div>
                     <div class="btn_container">
