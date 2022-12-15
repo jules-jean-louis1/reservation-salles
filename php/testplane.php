@@ -14,6 +14,12 @@ if (isset($_GET['year']) && isset($_GET['week'])) {
 $year = $dt->format('o');
 $week = $dt->format('W');
 
+$sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
+$rresult = mysqli_query($connect, $sql);
+while ($lrow = mysqli_fetch_assoc($rresult)){ 
+    $ret[] = $lrow; 
+  }
+
 ?>
 
 
