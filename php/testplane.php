@@ -16,9 +16,14 @@ $week = $dt->format('W');
 
 $sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
 $rresult = mysqli_query($connect, $sql);
-while ($lrow = mysqli_fetch_assoc($rresult)){ 
-    $ret[] = $lrow; 
-  }
+$row = $rresult->fetch_all();
+$r = $row[0][1];
+$rt = date('d M Y', strtotime($r));
+
+/* for ($i=0; $row[$i] ; $i++) {
+    $myDate = date('d M Y', strtotime($row[$i][1]));
+}
+ */
 
 ?>
 
@@ -57,6 +62,7 @@ while ($lrow = mysqli_fetch_assoc($rresult)){
                             while ($week == $dt->format('W')) {
                                 for ($i=0; isset($days[$i]) ; $i++) {
                                     $dt->modify('+1 day');
+                                    $time = ($dt->format('d M Y'));
                                     echo "<th>".$days[$i]."<br>". $dt->format('d M Y')."</th>";
                                 }
                              }
@@ -68,7 +74,9 @@ while ($lrow = mysqli_fetch_assoc($rresult)){
                         for ($i=8; $i <= 19 ; $i++) {
                             echo "<tr>";
                             for ($j=0; $j <= 5 ; $j++) {
-                                echo "<td>".$i.":00"."</td>";
+                                $time1 = $i . ":00";  
+                                $time2 = date('d M Y H:i:s', strtotime($time.$time1));
+                                echo "<td>".$time1."</td>";
                                 }
                             for ($j=5; $j <= 6 ; $j++) { 
                                 echo "<td>"."Indisponible"."</td>";
