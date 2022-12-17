@@ -5,7 +5,7 @@ $errors = [];
 $days = ['Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche',];
 
 
-$dt = new DateTime;
+$dt = new DateTime();
 if (isset($_GET['year']) && isset($_GET['week'])) {
     $dt->setISODate($_GET['year'], $_GET['week']);
 } else {
@@ -14,11 +14,24 @@ if (isset($_GET['year']) && isset($_GET['week'])) {
 $year = $dt->format('o');
 $week = $dt->format('W');
 
+
+
 $sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
 $rresult = mysqli_query($connect, $sql);
-$row = $rresult->fetch_all();
-$r = $row[0][1];
+
+while ($row = $rresult->fetch_all()) {
+    if ($row[0][1] == '2022-12-18 10:00') {
+        echo "00";
+    }
+}
+
+/* $r = $row[0][1];
 $rt = date('d M Y', strtotime($r));
+var_dump($r);
+foreach ($row as $key => $value) {
+    print $key;
+} */
+
 
 /* for ($i=0; $row[$i] ; $i++) {
     $myDate = date('d M Y', strtotime($row[$i][1]));
@@ -59,13 +72,14 @@ $rt = date('d M Y', strtotime($r));
                         <tr>
                             <th>Heure</th>
                             <?php
+                            
                             while ($week == $dt->format('W')) {
                                 for ($i=0; isset($days[$i]) ; $i++) {
                                     $dt->modify('+1 day');
-                                    $time = ($dt->format('d M Y'));
+                                    $time = [($dt->format('d M Y'))];
                                     echo "<th>".$days[$i]."<br>". $dt->format('d M Y')."</th>";
-                                }
-                             }
+                                } 
+                            }
                             ?>
                         </tr>
                     </thead>
@@ -75,7 +89,12 @@ $rt = date('d M Y', strtotime($r));
                             echo "<tr>";
                             for ($j=0; $j <= 5 ; $j++) {
                                 $time1 = $i . ":00";  
-                                $time2 = date('d M Y H:i:s', strtotime($time.$time1));
+                                /* $time2 = date('d M Y H:i:s', strtotime($time)); */
+                                /* while ($row =$rresult->fetch_all()) {
+                                    if ($row[0][1] == $time2) {
+                                        echo "00";
+                                    }
+                                } */
                                 echo "<td>".$time1."</td>";
                                 }
                             for ($j=5; $j <= 6 ; $j++) { 
