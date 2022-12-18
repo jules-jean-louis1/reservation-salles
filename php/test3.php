@@ -23,25 +23,40 @@ if($week > 52) {
             }
             $hour = 8;
             $day = 1;
+            $jours = 0;
             while ($day <= 7) {
                 for ($i=0; isset($jour[$i]) ; $i++) {
                     $d = strtotime($year ."W". $week . $day); 
                     echo "<td>".$jour[$i]. "<br>". date('d M Y', $d) ."</td>";
+                    $r[] = date('d M Y', $d);
                     $day++;
                 }
+                $t = strtotime($year ."W". $week . $day); 
+                $r[] = date('d M Y', $t);
+                $five_days = array_slice($r,0,5,true);
                 while($hour <= 19) { 
                     echo "<tr>";
-                    for ($j=0; $j <= 5 ; $j++) {
-                        $time1 = $hour . ":00";  
+                    for ($j=0; $j <= 0 ; $j++) {
+                        $time1 = $hour . ":00";
                         echo "<td>".$time1."</td>";
+                    } 
+                    for ($k=0; isset($five_days[$k]) ; $k++) {
+                        
+                    for ($j=4; $j <= 5 ; $j++) {
+                        $time1 = $hour . ":00";
+                    } 
+                    echo "<td>".$five_days[$k]." ".$time1."</td>";
+                        /* echo "<td>".$time1."</td>"; */
                         }
                     for ($j=5; $j <= 6 ; $j++) { 
                         echo "<td>"."Indisponible"."</td>";
                     }
                     echo "</tr>";
                     $hour++;
+                    
                 }
             }
+            
 
             ?>
     </tr>
