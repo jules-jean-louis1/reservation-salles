@@ -1,4 +1,15 @@
 <?php
+session_start();
+include '../connect/connect_local.php';
+
+$sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
+$rresult = mysqli_query($connect, $sql);
+
+while ($row = $rresult->fetch_all()) {
+    $ret[] = $row; 
+}
+var_dump($ret);
+
 $jour = ['Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche',];
 $year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
 $week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
