@@ -6,6 +6,10 @@ $sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN util
 $rresult = mysqli_query($connect, $sql);
 $row = $rresult->fetch_all();
 var_dump($row);
+$date1 = $row[0][1];
+$dd = date('d M Y H:i', strtotime($date1));
+var_dump($dd);
+
 
 $jour = ['Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche',];
 $year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
@@ -49,10 +53,17 @@ if($week > 52) {
                         echo "<td>".$time1."</td>";
                     } 
                     for ($k=0; isset($five_days[$k]) ; $k++) {
-                        
-                    for ($j=4; $j <= 5 ; $j++) {
+                        for ($b=0; isset($row[$b]) ; $b++) {
+                            $event = $row[$b][1];
+                            $e = date('d M Y H:i', strtotime($event));
+                            
+                            if ($e === $five_days[$k] ) {
+                                echo $row[$b][0];
+                            }
+                        }
+                        for ($j=4; $j <= 5 ; $j++) {
                         $time1 = $hour . ":00";
-                    } 
+                        } 
                     echo "<td>".$five_days[$k]." ".$time1."</td>";
                         /* echo "<td>".$time1."</td>"; */
                         }
