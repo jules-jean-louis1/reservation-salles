@@ -5,10 +5,8 @@ include '../connect/connect_local.php';
 $sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
 $rresult = mysqli_query($connect, $sql);
 $row = $rresult->fetch_all();
-var_dump($row);
-$date1 = $row[0][1];
-$dd = date('d M Y H:i', strtotime($date1));
-var_dump($dd);
+
+
 
 
 $jour = ['Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche',];
@@ -36,45 +34,59 @@ if($week > 52) {
             $hour = 8;
             $day = 1;
             $jours = 0;
-            while ($day <= 7) {
-                for ($i=0; isset($jour[$i]) ; $i++) {
-                    $d = strtotime($year ."W". $week . $day); 
-                    echo "<td>".$jour[$i]. "<br>". date('d M Y', $d) ."</td>";
-                    $r[] = date('d M Y', $d);
-                    $day++;
+                while ($day <= 7) {
+                    for ($i=0; isset($jour[$i]) ; $i++) {
+                        $d = strtotime($year ."W". $week . $day); 
+                        echo "<td>".$jour[$i]. "<br>". date('d M Y', $d) ."</td>";
+                        $r[] = date('d M Y', $d);
+                        $day++;
+                    }
                 }
                 $t = strtotime($year ."W". $week . $day); 
                 $r[] = date('d M Y', $t);
                 $five_days = array_slice($r,0,5,true);
+                
                 while($hour <= 19) { 
                     echo "<tr>";
                     for ($j=0; $j <= 0 ; $j++) {
-                        $time1 = $hour . ":00";
-                        echo "<td>".$time1."</td>";
-                    } 
-                    for ($k=0; isset($five_days[$k]) ; $k++) {
+                            $time1 = $hour . ":00";
+                            $time2 = $hour . ":00". ":00";
+                            echo "<td>".$time1."</td>";
+                            
+                        }
                         for ($b=0; isset($row[$b]) ; $b++) {
                             $event = $row[$b][1];
-                            $e = date('d M Y H:i', strtotime($event));
-                            
-                            if ($e === $five_days[$k] ) {
-                                echo $row[$b][0];
+                            $ev = date('d M Y H:i', strtotime($event));
+                            for ($k=0; isset($five_days[$k]) ; $k++) {
+                                
+                                if ($ev === $five_days[$k].' '.$time1) {
+                                    echo "<td>".$row[$b][0]."</td>";
+                                    
+                                } else {
+                                    echo "<td>".$five_days[$k]." ".$time1."</td>";
+                                    
+                                    
+                                    }
+                                }
+                                    
                             }
-                        }
-                        for ($j=4; $j <= 5 ; $j++) {
-                        $time1 = $hour . ":00";
-                        } 
-                    echo "<td>".$five_days[$k]." ".$time1."</td>";
-                        /* echo "<td>".$time1."</td>"; */
-                        }
-                    for ($j=5; $j <= 6 ; $j++) { 
-                        echo "<td>"."Indisponible"."</td>";
-                    }
+                                /* echo "<td>".$five_days[$k]." ".$time1."</td>"; */
+                                /* for ($j=4; $j <= 5 ; $j++) {
+                                    $time1 = $hour . ":00";
+                                    
+                                }  */
+                                /* echo "<td>".$five_days[$k]." ".$time1."</td>"; */
+                                /* echo "<td>".$time1."</td>"; */
+                            for ($j=5; $j <= 6 ; $j++) { 
+                                echo "<td>"."Indisponible"."</td>";
+                            }
                     echo "</tr>";
                     $hour++;
                     
-                }
-            }
+                } 
+                    
+                
+            
             
 
             ?>
