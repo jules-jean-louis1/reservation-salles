@@ -15,12 +15,14 @@ a {
 }
 body {
 	font-family: 'Roboto', sans-serif;
-	background-color: #FFF;
+	background-color: #FEF2F4;
 	color: #F54D6C;
 	color: #9146ff;
 }
 
-
+main {
+	height: 82vh;
+  }
 
 
 
@@ -36,12 +38,12 @@ body {
 /*######################################################################*/
 /*#####################################################################*/
 header {
-	height: 65px;
+	/* height: 65px; */
+	background-color: #fff;
 }
 .navbar {
 	background-color: #FFF;
-	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	border-bottom: 1px solid transparent;
+	border-bottom: 1px solid #F54D6C;
 	
 }
 .navbar-container {
@@ -67,12 +69,10 @@ header {
 }
 #menu-header li {
 	float: left;
-	display: inline;
+	/* display: inline; */
 	position: relative;
 }
 #menu-header a,.flex-liste a {
-	display: flex;
-	align-items: center;
 	line-height: 60px;
 	padding: 0 14px;
 	text-decoration: none;
@@ -130,12 +130,22 @@ header {
 	background: transparent;
 }
 #logo_link {
+	display: flex;
+	align-items: center;
+  }
+#logo_link {
 	font-family: 'EB Garamond', serif;
 	font-weight: 800;
 	text-transform: capitalize;
 	font-size: 26px;
 	font-style: italic;
 	color: #F54D6C;
+}
+#logo_link img {
+	width: 40px;
+}
+#logo_link a {
+	font-size: 25px;
 }
 .login-header {
     display: flex;
@@ -183,13 +193,17 @@ a:hover#btn_inscri_h  {
 #li_a_logo {
 	display: flex;
 	gap: 0.5em;
-	border: 1px solid #111;
-	border-radius: 50px;
+	border: 1px solid #F54D6C;
+	border-radius: 6px;
 	width: 125px;
 	justify-content: center;
 	height: 48;	
 	align-items: center;
+	background-color: #FEF2F4;
   }
+  .filter-green{
+    filter: invert(73%) sepia(63%) saturate(7497%) hue-rotate(321deg) brightness(98%) contrast(96%);
+}
 
 @media screen and (max-width: 800px){
 	#menu-header {position:relative}
@@ -411,6 +425,10 @@ form {
 	flex-direction: column;
 	gap: 3em;
   }
+  .sub_container_main h2 {
+	color: #F54D6C;
+	font-family: 'EB Garamond', serif;
+  }
 #btn_main_1 {
 	border: 2px solid #F54D6C;
 	border-radius: 6px;
@@ -508,4 +526,46 @@ table td {
 /*#################       F O O T E R       ############################*/
 /*######################################################################*/
 /*######################################################################*/
-
+footer {
+	display: flex;
+	justify-content: center;
+  }
+.footer {
+	display: flex;
+	justify-content: center;
+	border-top: 1px solid #F54D6C;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	width: 90vw;
+  }
+#liste_foot {
+	display: flex;
+}
+#liste_foot li {
+	padding: 10px 10px;
+}
+#liste_foot li a {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 5px;
+	color: #F54D6C;
+	font-weight: bold;
+  }
+#btn_footer_1 {
+	border-radius: 6px;
+	border: 1px solid #F54D6C;
+	padding: 5px 10px;
+}
+.nav_footer img {
+	width: 50px;
+}
+.st0 {
+	fill: #F54D6C;
+  }
+svg#logo-nav {
+    width: 50px;
+	object-fit: cover;
+    object-position: center;
+}

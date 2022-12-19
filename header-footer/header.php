@@ -5,7 +5,10 @@
                 <nav id='menu-header'>
                 <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
                 <ul>
-                    <li id="logo_link"><a href='index.php'>Reserv'</a></li>
+                    <li id="logo_link">
+                        <img src="../images/logo/index.png" alt="">
+                        <a href='index.php'>Reserv'</a>
+                    </li>
                     <li><a href='http://'>Planning</a></li>
                     <li><a href='http://'>Réservation</a></li>
                 </ul>
@@ -22,7 +25,7 @@
                         <li> 
                             <?php if (isset($_SESSION['id']) != null) { ?>
                             <a href="./php/profil.php" id="li_a_logo">
-                                <img src="./images/icon/person.svg" alt="">
+                                <img src="../images/icon/person.svg" class="filter-green"/>
                                 <?php echo htmlspecialchars($_SESSION['login']); ?></a>
                             <?php } else { ?>
                                 <button class="button open-button"id="btn_inscri_h" style="color: #FFF;">Crée un compte</button>

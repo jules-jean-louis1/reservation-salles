@@ -1,188 +1,119 @@
 <?php
 session_start();
 include '../connect/connect_local.php';
-$login = isset($_SESSION['login']);
-mysqli_set_charset($connect,"utf8");
 
-$queryPlanning = mysqli_query($connect, "SELECT `titre`,`description`, `debut`, `fin`,`login` FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id; ");
-$fetchPlanning = mysqli_fetch_all($queryPlanning, MYSQLI_ASSOC);
+$sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
+$rresult = mysqli_query($connect, $sql);
+$row = $rresult->fetch_all();
 
 
-// $today=time();
-// $nextJour = time() + (24 * 60 * 60);
-//                    // 24 hours; 60 mins; 60 secs
-// echo 'Auj:       '. date('l d-m-y') ."\n";
-// echo 'Demain: '. date('l d-m-y', $nextJour) ."\n";
 
-            $monday = date('l d-m-y', strtotime('monday this week'));
-            $tuesday = date('l d-m-y', strtotime('tuesday this week'));
-            $wednesday = date('l d-m-y', strtotime('wednesday this week'));
-            $thursday = date('l d-m-y', strtotime('thursday this week'));
-            $friday = date('l d-m-y', strtotime('friday this week'));
-            $week=array($monday,$tuesday,$wednesday,$thursday, $friday);
 
-            $eight = "8:00";
-            $nine = "9:00";
-            $ten = "10:00";
-            $eleven = "11:00";
-            $twelve = "12:00";
-            $thirteen = "13:00";
-            $fourteen = "14:00";
-            $fifteen = "15:00";
-            $sixteen = "16:00";
-            $seventeen = "17:00";
-            $eighteen = "18:00";
-            $nineteen = "19:00"; 
-        $horaire=array($eight,$nine,$ten,$eleven,$twelve,$thirteen,$fourteen,$fifteen,$sixteen,$seventeen,$eighteen,$nineteen);
-        
+$jour = ['Lundi' , 'Mardi' , 'Mercredi', 'Jeudi', 'Vendredi','Samedi', 'Dimanche',];
+$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
+$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
+if($week > 52) {
+    $year++;
+    $week = 1;
+} elseif($week < 1) {
+    $year--;
+    $week = 52;
+}
+
+
 ?>
- <main>
-     <article id="general">
-        <section id="tableau">
-            <table>
-                <thead>
-                    <!-- il faut le mm nb de td que de colonne en haut pour que ça marche -->
-                    <th></th>
-                    <?php foreach ($week as $jour){
-                        echo "<th>".$jour."</th>";                         
-                    }                   
-                 ?>
-                    </tr>
-                </thead>
-                <tbody>  
-                    <?php                         
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo/index.png">
+    <title>Planning</title>
+</head>
+<body>
+    
 
-                        for ($i=0; isset($horaire[$i])==true; $i++){
-                            echo "<tr>";
-                            echo "<td>".$horaire[$i]."</td>";
-                            
-                         for ($j=0; isset($week[$j])==true; $j++){
-                             echo "<td>";   
+    
+    <main class="main_planning">
+        <article class="warpper_planning">
+            <section class="container_planning">
+                <div class="wel_flex_plan">
+                    <h2>Planning des réservations</h2>
+                </div>
+                <div class="planning">
+                    <div class="link_forward_past"> 
+                        <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>" id="btn_prev_1"><< Semaine précédente</a> 
+                        <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" id="btn_prev_1">Semaine suivante >></a> 
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Horaire</th>
+                                    <?php
+                                    /* if($week < 10) {
+                                        $week = '0'. $week;
+                                    } */
+                                    $hour = 8;
+                                    $day = 1;
+                                    $jours = 0;
+                                    
+                                    
 
-                            foreach ($fetchPlanning as $value){
-                            $debut = $value['debut'];
-                            $time = strtotime($debut);
-                            $jourDebut = date("l d-m-y",$time);
-                            $heureDebut = date("H:00",$time);
 
-                        //  echo $heureDebut;
-                        //  echo $jourDebut;
-                            if(($jourDebut == $week[$j]) && ($heureDebut == $horaire[$i])) {
-                                echo '<div class = "'.$value['type_activité'].'"><a href=./reservation.php?val='.$value['id'].'><span id="font">'. $value['titre'] . '</span><span class="tooltiptext">'.$value['login'].'</span>'.'</a></div>';?>
-                                <style>
-                                    #font {
-                                        font-family: 'Courier New', Courier, monospace;
-                                    }
-                                </style>
-                                <?php
-                                if ($value['type_activité'] == "social"){?> 
-                                    <style>.social  {background-color: #FFD3B4;
-                                    }
-                                    .social .tooltiptext {
-                                                visibility: hidden;
-                                                width: 120px;
-                                                background-color: #5D534A;
-                                                color: #FDFAF6;
-                                                text-align: center;
-                                                padding: 5px 0;
-                                                border-radius: 3px;
-                                                position: absolute;
-                                                z-index: 1;
-                                                }
-                            
-                                    .social:hover .tooltiptext {
-                                        visibility: visible;
+                                        while ($day <= 7) {
+                                            for ($i = 0; isset($jour[$i]); $i++) {
+                                                $d = strtotime($year . "W" . $week . $day);
+                                                echo "<th>" . $jour[$i] . "<br>" . date('d M Y', $d) . "</th>";
+                                                $r[] = date('d M Y', $d);
+                                                $day++;
                                             }
-                                    </style>
-                                    <?php
-                                }elseif ($value['type_activité'] == "scolaire"){ ?>
-                                    <style>.scolaire  {background-color: #98DDCA;
-                                    }
-                                    .scolaire .tooltiptext {
-                                                visibility: hidden;
-                                                width: 120px;
-                                                background-color: #5D534A;
-                                                color: #FDFAF6;
-                                                text-align: center;
-                                                padding: 5px 0;
-                                                border-radius: 3px;
-                                                position: absolute;
-                                                z-index: 1;
-                                                }
-                            
-                                    .scolaire:hover .tooltiptext {
-                                        visibility: visible;
-                                            }
-                                    </style>
-                                    <?php
-                                }elseif ($value['type_activité'] == "loisirs"){ ?>
-                                    <style>.loisirs  {background-color: #FFAAA7;
-                                                }
-                                        .loisirs .tooltiptext {
-                                            visibility: hidden;
-                                            width: 120px;
-                                            background-color: #5D534A;
-                                            color: #FDFAF6;
-                                            text-align: center;
-                                            padding: 5px 0;
-                                            border-radius: 3px;
-                                            position: absolute;
-                                            z-index: 1;
-                                            }
-                        
-                                        .loisirs:hover .tooltiptext {
-                                            visibility: visible;
-                                                }
-                                        </style>
-                                    <?php
-                                }elseif ($value['type_activité'] == "sport"){ ?>
-                                    <style>.sport  {background-color: #D5ECC2;
-                                    }
-                                    .sport .tooltiptext {
-                                                visibility: hidden;
-                                                width: 120px;
-                                                background-color: #5D534A;
-                                                color: #FDFAF6;
-                                                text-align: center;
-                                                padding: 5px 0;
-                                                border-radius: 3px;
-                                                position: absolute;
-                                                z-index: 1;
-                                                }
-                            
-                                    .sport:hover .tooltiptext {
-                                        visibility: visible;
-                                            }
-                                    </style>
-                                    <?php
-                                }elseif ($value['type_activité'] == "festivite"){ ?>
-                                    <style>.festivite  {background-color: #F6DFEB;
                                         }
-                                    .festivite .tooltiptext {
-                                            visibility: hidden;
-                                            width: 100px;
-                                            background-color: #5D534A;
-                                            color: #FDFAF6;
-                                            text-align: center;
-                                            padding: 5px 0;
-                                            border-radius: 3px;
-                                            position: absolute;
-                                            z-index: 1;
+                                        $t = strtotime($year . "W" . $week . $day);
+                                        $r[] = date('d M Y', $t);
+                                        $five_days = array_slice($r, 0, 5, true);
+                                        ?>
+                             </tr>
+                        </thead>
+                                    <tbody>
+                                        <?php
+                                        
+                                        for ($b = 0; isset($row[$b]); $b++) {
+                                            
+                                            $event = date('d M Y H:i', strtotime($row[$b][1]));
+                                            
+                                            
+                                            while ($hour <= 19) {
+                                                echo "<tr>";
+                                                for ($j = 0; $j <= 0; $j++) {
+                                                    $time1 = $hour . ":00";
+                                                    echo "<td>" . $time1 . "</td>";
+                                                }
+                                                for ($k = 0; isset($five_days[$k]); $k++) {
+                                                        $date_match = $five_days[$k].' '.$time1;
+                                                    if ($date_match === $event) {
+                                                        
+                                                        echo "<td>" . $row[$b][0]."</td>";
+                                                    } else {
+                                                        echo "<td>" . $time1 . "</td>";
+                                                    }
+                                                }
+                                                for ($j = 5; $j <= 6; $j++) {
+                                                    echo "<td>" . "Indisponible" . "</td>";
+                                                }
+                                                echo "</tr>";
+                                                $hour++;
                                             }
-                            
-                                    .festivite:hover .tooltiptext {
-                                        visibility: visible;
-                                            }  
-                                        </style><?php ;
                                         }
-                                    }
-                                }
-                            }
-                         }
-
-                      ?>
-                </tbody>
-            </table>
+                    
+                    
+                                                    ?>
+                                    </tbody>
+                    </table>
+            </div>
         </section>
-     </article>
-    </main>
+    </article>
+</main>
+
+</body>
+</html>
