@@ -24,7 +24,7 @@
                         </li>
                         <li> 
                             <?php if (isset($_SESSION['id']) != null) { ?>
-                            <a href="./php/profil.php" id="li_a_logo">
+                            <a href="profil.php" id="li_a_logo">
                                 <img src="../images/icon/person.svg" class="filter-green"/>
                                 <?php echo htmlspecialchars($_SESSION['login']); ?></a>
                             <?php } else { ?>

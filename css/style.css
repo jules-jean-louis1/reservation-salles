@@ -266,7 +266,7 @@ form {
 	display: flex;
     flex-direction: column;
     gap: 1em;
-	padding-top: 55px;
+	width: 20vw;
   }
   
   .form-control {
@@ -318,7 +318,36 @@ form {
 	color: #F54D6C;
 	font-family: 'EB Garamond', serif;
 }
-
+/*######################################################################*/
+/*#####################################################################*/
+/*#################      P R O F I L     ############################*/
+/*######################################################################*/
+/*#####################################################################*/
+.warpper_profil {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.container_profil {
+	display: flex;
+	justify-content: center;
+	width: 50vw;
+	height: 65vh;
+	border: 2px solid #F54D6C;
+	border-radius: 6px;
+	padding: 10px 15px;
+	margin-top: 94px;
+  }
+  .form_titre {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  }
+  .titre_profil h2 {
+	font-size: 24px;
+	color: #F54D6C;
+	font-family: 'EB Garamond', serif;
+  }
 /*######################################################################*/
 /*#####################################################################*/
 /*#################      C O N N E X I O N     ############################*/
@@ -554,6 +583,7 @@ input#log  {
 	color: #FEF2F4;
 	border: 1px solid #F54D6C;
 	border-radius: 6px;
+	padding: 5px;
 }
 #btn_reserv_form:hover {
 	background: #ff0936;

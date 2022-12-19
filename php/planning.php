@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../connect/connect_local.php';
-
+$errors = [];
 $sql = "SELECT `titre`,`debut`,`fin`,`login` FROM `reservations` INNER JOIN utilisateurs WHERE utilisateurs.id = reservations.id_utilisateur;";
 $rresult = mysqli_query($connect, $sql);
 $row = $rresult->fetch_all();
