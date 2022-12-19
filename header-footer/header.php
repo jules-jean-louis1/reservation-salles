@@ -9,15 +9,15 @@
                         <img src="../images/logo/index.png" alt="">
                         <a href='index.php'>Reserv'</a>
                     </li>
-                    <li><a href='http://'>Planning</a></li>
-                    <li><a href='http://'>Réservation</a></li>
+                    <li><a href='planning.php'>Planning</a></li>
+                    <li><a href='reservation.php'>Réservation</a></li>
                 </ul>
                 </nav>
                 <div class="login-header">
                     <ul class="flex-liste">
                         <li> 
                             <?php if (isset($_SESSION['id']) != null) { ?>
-                            <a href="./php/deconnexion.php" id="btn_deconnex_h">Deconnexion</a>
+                            <a href="deconnexion.php" id="btn_deconnex_h">Deconnexion</a>
                             <?php } else {  ?>
                                 <button class="button open-button_2"id="btn_connex_h">Connexion</button>
                             <?php } ?>

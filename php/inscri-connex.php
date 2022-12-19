@@ -7,7 +7,7 @@
                         <div class="header_dialog">
                             <h2>S'inscrire</h2>
                         </div>
-                        <button class="button close-button" id="btn_close_dialog"><img src="images/icon/cancel_FILL0_wght400_GRAD0_opsz48.svg" alt=""></button>
+                        <button class="button close-button" id="btn_close_dialog"><img src="../images/icon/cancel_FILL0_wght400_GRAD0_opsz48.svg" class="filter-green"/></button>
                             <form class="form" method="POST" name="sign-in">
                                 <div class="form-control">
                                     <label>Login</label>
@@ -35,7 +35,7 @@
                         <div class="header_dialog">
                             <h2>Se connecter</h2>
                         </div>
-                        <button class="button close-button_2" id="btn_close_dialog"><img src="images/icon/cancel_FILL0_wght400_GRAD0_opsz48.svg" alt=""></button>
+                        <button class="button close-button_2" id="btn_close_dialog"><img src="../images/icon/cancel_FILL0_wght400_GRAD0_opsz48.svg" class="filter-green"/></button>
                             <form class="form" method="POST" name="connexion">
                                 <div class="form-control">
                                     <label>Login</label>

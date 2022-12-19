@@ -4,7 +4,7 @@ session_start();
 if(session_destroy())
 {
 // Redirection vers la page d'acceuil
-header("Location: index.php");
+header('Location: index.php');
 }
 exit;
 ?>

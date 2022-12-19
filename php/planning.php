@@ -32,9 +32,12 @@ if($week > 52) {
     <title>Planning</title>
 </head>
 <body>
-    
-
-    
+    <!----------------- Header----------------->
+<?php include '../header-footer/header.php'?>
+<!----------------- Header----------------->
+<!----------------- Modal----------------->
+<?php include 'inscri-connex.php'; ?>
+        <!----------------- Modal----------------->
     <main class="main_planning">
         <article class="warpper_planning">
             <section class="container_planning">
@@ -114,6 +117,8 @@ if($week > 52) {
         </section>
     </article>
 </main>
-
+    <!----------------- Footer ----------------->
+    <?php include '../header-footer/footer.php'?>
+    <!----------------- Footer ----------------->
 </body>
 </html>

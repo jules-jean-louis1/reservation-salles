@@ -57,6 +57,9 @@ if (isset($_POST['delete'])) {
     <!----------------- Header----------------->
     <?php include './header-footer/header.php';?>
     <!----------------- Header----------------->
+    <!----------------- Modal----------------->
+    <?php include 'inscri-connex.php'; ?>
+        <!----------------- Modal----------------->
     <main>
         <section class="container_profil">
             <form action="" method="post">

@@ -23,7 +23,9 @@ $errors = [];
     <?php include '../header-footer/header.php'?>
 <!----------------- Header----------------->
     <main>
+        <!----------------- Modal----------------->
         <?php include 'inscri-connex.php'; ?>
+        <!----------------- Modal----------------->
         <actricle class="main_s1">
             <section class="main_sec">
                     <div class="warpper_main">
@@ -31,8 +33,8 @@ $errors = [];
                             <div class="sub_container_main">
                                 <h2>Réservation de salles</h2>
                                     <div class="warpper_link_pla">
-                                        <a href="./php/planning.php" id="btn_main_1">Acceder au Planning</a>
-                                        <a href="./php/reservation.php"  id="btn_main_1"> Faire une réservation</a>
+                                        <a href="reservation.php"  id="btn_main_2"> Faire une réservation</a>
+                                        <a href="planning.php" id="btn_main_1">Acceder au Planning</a>
                                     </div>
                             </div>
                         </div>

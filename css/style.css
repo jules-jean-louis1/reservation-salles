@@ -17,11 +17,11 @@ body {
 	font-family: 'Roboto', sans-serif;
 	background-color: #FEF2F4;
 	color: #F54D6C;
-	color: #9146ff;
+	/* color: #9146ff; */
 }
 
 main {
-	height: 82vh;
+	height: 93vh;
   }
 
 
@@ -161,24 +161,27 @@ header {
 #btn_connex_h {
 	border: 2px solid #F54D6C;
 	color: #F54D6C;
-	border-radius: 50px;
+	border-radius: 6px;
 	height: 45px;
 	font-size: 18px;
 	padding: 0px 8px;
 	background-color: transparent;
-	font-family: 'EB Garamond', serif;
 }
 #btn_connex_h:hover {
-	background-color: transparent;
+	background: #ffe8ece7;
+	transition: 100ms ease-in-out;
 }
 #btn_inscri_h {
 	border: 2px solid #F54D6C;
 	background-color: #F54D6C;
-	border-radius: 50px;
-	height: 45px;
-	font-family: 'EB Garamond', serif; 
+	border-radius: 6px;
+	height: 45px; 
 	font-size: 18px;
 	padding: 0px 8px;
+}
+#btn_inscri_h:hover {
+	background: #ff0936;
+	transition: 100ms ease-in-out;
 }
 #btn_inscri_h a {
 	color: #FFF;
@@ -201,6 +204,10 @@ a:hover#btn_inscri_h  {
 	align-items: center;
 	background-color: #FEF2F4;
   }
+#li_a_logo:hover {
+	background: #ffe8ece7;
+	transition: 100ms ease-in-out;
+}
   .filter-green{
     filter: invert(73%) sepia(63%) saturate(7497%) hue-rotate(321deg) brightness(98%) contrast(96%);
 }
@@ -228,18 +235,17 @@ a:hover#btn_inscri_h  {
 
 
 .modal {
-	width: 45ch;
-	height: 64ch;
+	width: 20vw;
+	height: 52vh;
 	border: 1px solid transparent;
 	border-radius: 8px;
 	padding: 15px 25px;
-	font-family: 'EB Garamond', serif;
-	background-color: #fff;
+	background-color: #FEF2F4;
   }
   dialog#modal {
     position: absolute;
-    top: 20%;
-    left: 38%;
+	top: 22%;
+	left: 39%;
 }
 #btn_close_dialog {
 	position: absolute;
@@ -272,6 +278,7 @@ form {
 .form-control label {
 	display: inline-block;
 	margin-bottom: 5px;
+	color: #F54D6C;
 }
 
 .form-control input {
@@ -306,6 +313,11 @@ form {
 	background-color: #ff0936;
 	border: 2px solid #ff0936;
 }
+.header_dialog h2 {
+	font-size: 24px;
+	color: #F54D6C;
+	font-family: 'EB Garamond', serif;
+}
 
 /*######################################################################*/
 /*#####################################################################*/
@@ -316,17 +328,17 @@ form {
 /********************** DIALOGUE ****************************************/
 
 .modal_2 {
-	width: 45ch;
-	height: 64ch;
+	width: 20vw;
+	height: 45vh;
 	border: 1px solid transparent;
-	border-radius: 8px;
+	border-radius: 6px;
 	padding: 15px 25px;
-	font-family: 'EB Garamond', serif;
+	background: #FEF2F4;
   }
   dialog#modal_2 {
     position: absolute;
-    top: 20%;
-    left: 38%;
+	top: 22%;
+	left: 39%;
 }
 #btn_close_dialog {
 	position: absolute;
@@ -362,26 +374,26 @@ form {
 }
 
 .form-control input {
-	border: 2px solid #F54D6C;
-	border-radius: 50px;
+	border: 1px solid #F54D6C;
+	border-radius: 6px;
 	display: block;
 	font-family: inherit;
 	font-size: 14px;
 	padding: 10px;
 	width: 100%;
 	background: transparent;
+	color: #F54D6C;
 }
 
 .form-control input:focus {
-	outline: 0;
-	border-color: #777;
+	outline:1.2px solid #ff0936;
 }
 
 
 .btn_submit_inscri {
 	background-color: #F54D6C;
 	border: 2px solid #F54D6C;
-	border-radius: 4px;
+	border-radius: 6px;
 	color: #FEF2F4;
 	display: block;
 	font-family: inherit;
@@ -389,7 +401,8 @@ form {
 	padding: 10px;
 	margin-top: 20px;
 	width: 100%;
-}
+	font-weight: bolder;
+  }
 .btn_submit_inscri:hover {
 	background-color: #ff0936;
 	border: 2px solid #ff0936;
@@ -433,9 +446,24 @@ form {
 	border: 2px solid #F54D6C;
 	border-radius: 6px;
 	padding: 8px 14px;
-	font-family: 'EB Garamond', serif;
 	color: #F54D6C;
 	font-weight: 600;
+}
+#btn_main_1:hover {
+	background: #ffe8ece7;
+	transition: 100ms ease-in-out;
+}
+#btn_main_2 {
+	border: 2px solid #F54D6C;
+	border-radius: 6px;
+	padding: 8px 14px;
+	background: #F54D6C;
+	color: #FEF2F4;
+	font-weight: 600;
+}
+#btn_main_2:hover {
+	background: #ff0936;
+	transition: 100ms ease-in-out;
 }
 /*#######################################################################*/
 /*######################################################################*/
@@ -446,18 +474,91 @@ form {
 .reserv_warpper {
   display: flex;
   justify-content: center;
+  font-family: 'Roboto', sans-serif;
 }
 .reserv_container {
 	display: flex;
 	width: 50vw;
-	height: 50vh;
+	height: 65vh;
+	border: 2px solid #F54D6C;
+	border-radius: 6px;
+	padding: 10px 15px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 93px;
+	flex-direction: column;
+  }
+.titre_reserv h2 {
+	font-family: 'EB Garamond', serif;
+
 }
 .form_reserv {
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
+.top_reserv {
+	display: flex;
+	flex-direction: column;
+  }
+#form-post_reserv label {
+	font-size: 20px;
+}
+input#log  {
+	height: 35px;
+	background-color: #FEF2F4;
+	color: #F54D6C;
+	border: 1px solid #F54D6C;
+	border-radius: 6px;
+	padding: 5px;
+	font-family: 'Roboto', sans-serif;
+}
+#form-post_reserv input:focus {
+	outline:1.2px solid #ff0936;
+}
+#form-post_reserv textarea {
+	background-color: #FEF2F4;
+	color: #F54D6C;
+	border: 1px solid #F54D6C;
+	border-radius: 6px;
+	font-family: 'Roboto', sans-serif;
+}
+#form-post_reserv textarea:focus {
+	outline:1.2px solid #ff0936;
+}
+.bottom_reserv {
+	display: flex;
+	flex-direction: column;
+  }
+.select_h {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 0px;
+  }
+#select_hours {
+	width: 120px;
+	padding: 0px 5px;
+	background: #FEF2F4;
+	border: 1px solid #F54D6C;
+	color: #F54D6C;
+	border-radius: 6px;
 
+  }
+#select_hours select:focus {
+	outline:1.2px solid #ff0936;
+}
+#btn_reserv_form {
+	font-size: 24px;
+	font-weight: 800;
+	background-color: #F54D6C;
+	color: #FEF2F4;
+	border: 1px solid #F54D6C;
+	border-radius: 6px;
+}
+#btn_reserv_form:hover {
+	background: #ff0936;
+	transition: 100ms ease-in-out;
+}
 /*######################################################################*/
 /*#####################################################################*/
 /*#################      P L A N N I N G     ############################*/
@@ -514,12 +615,23 @@ table td {
 	color: #F54D6C;
 	height: 4.5vh;
 }
+table td:hover {
+	background: #ffe8ece7;
+	transition: 50ms ease-in-out;
+}
 #btn_prev_2 {
 	border: 2px solid #F54D6C;
 	background: #F54D6C;
 	border-radius: 4px;
 	padding: 8px 20px;
 	color: #FFF;
+  }
+#btn_prev_1:hover {
+	background: #ffe8ece7;
+	transition: 100ms ease-in-out;
+}
+.warpper_planning {
+	margin-top: 45px;
   }
 /*#######################################################################*/
 /*######################################################################*/
@@ -557,6 +669,10 @@ footer {
 	border-radius: 6px;
 	border: 1px solid #F54D6C;
 	padding: 5px 10px;
+}
+#btn_footer_1:hover {
+	background: #ffe8ece7;
+	transition: 100ms ease-in-out;
 }
 .nav_footer img {
 	width: 50px;
