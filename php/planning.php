@@ -46,7 +46,8 @@ if($week > 52) {
                 </div>
                 <div class="planning">
                     <div class="link_forward_past"> 
-                        <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>" id="btn_prev_1"><< Semaine précédente</a> 
+                        <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>" id="btn_prev_1"><< Semaine précédente</a>
+                         
                         <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" id="btn_prev_1">Semaine suivante >></a> 
                     </div>
                     <table>

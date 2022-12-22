@@ -1,34 +1,37 @@
 <?php
 session_start();
 include '../connect/connect_local.php';
-// affichage event "SELECT `titre`,`description`, `debut`, `fin`,`login` FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id; "
+if (isset($_SESSION['id']) != 0) { ?>
 
-$validation = false;
-$errors = [];    
+<?php
+    // affichage event "SELECT `titre`,`description`, `debut`, `fin`,`login` FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id; "
 
-if (isset($_POST['reserver'])) {
-    $titre = $_POST['titre'];
-    $descro = $_POST['description'];
-    $date = $_POST['date'];
-    $heureD = $_POST['heureD'];
-    $heureF = $_POST['heureF'];
-    $strHD = strtotime($_POST['heureF']);
-    $strHF = strtotime($_POST['heureF']);
-    $id = $_SESSION['id'];
-    $sql = "INSERT INTO `reservations` (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$descro','$date''.$heureD','$date''.$heureF','$id')";
-    $checkHeureD = "SELECT * FROM `reservations` WHERE `debut` = '$date'.'$heureD'"; 
-    if ($heureD <= $heureF) {
-        if ($strHF - $strHD = 3600) {
-            mysqli_query($connect, $sql);
-            $errors['succes'] = "Votre résevation est confirmé pour le " . $date . " de " . $heureD . " à " . $heureF;
+    $validation = false;
+    $errors = [];
+
+    if (isset($_POST['reserver'])) {
+        $titre = $_POST['titre'];
+        $descro = $_POST['description'];
+        $date = $_POST['date'];
+        $heureD = $_POST['heureD'];
+        $heureF = $_POST['heureF'];
+        $strHD = strtotime($_POST['heureF']);
+        $strHF = strtotime($_POST['heureF']);
+        $id = $_SESSION['id'];
+        $sql = "INSERT INTO `reservations` (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$descro','$date''.$heureD','$date''.$heureF','$id')";
+        $checkHeureD = "SELECT * FROM `reservations` WHERE `debut` = '$date'.'$heureD'";
+        if ($heureD <= $heureF) {
+            if ($strHF - $strHD = 3600) {
+                mysqli_query($connect, $sql);
+                $errors['succes'] = "Votre résevation est confirmé pour le " . $date . " de " . $heureD . " à " . $heureF;
+            } else {
+                $errors['fail1'] = "La salle ne peut pas être réserver pour plus d'un heure";
+            }
         } else {
-            $errors['fail1'] = "La salle ne peut pas être réserver pour plus d'un heure";
+            $errors['fail'] = "Votre réservation n'a pas était effectué.";
         }
-    } else {
-        $errors['fail'] = "Votre réservation n'a pas était effectué.";
+
     }
-    
-}
 
 ?>
 
@@ -43,7 +46,7 @@ if (isset($_POST['reserver'])) {
 </head>
 <body>
 <!----------------- Header----------------->
-<?php include '../header-footer/header.php'?>
+<?php include '../header-footer/header.php' ?>
 <!----------------- Header----------------->
 <!----------------- Modal----------------->
 <?php include 'inscri-connex.php'; ?>
@@ -105,7 +108,7 @@ if (isset($_POST['reserver'])) {
                         <input type="submit" value="Réserver !" name="reserver" id="btn_reserv_form">
                     </div>
                     <div class="btn_container">
-                        <?php foreach($errors as $message):?>
+                        <?php foreach ($errors as $message): ?>
                                 <?php echo htmlspecialchars($message); ?>
                             <?php endforeach; ?>
                     </div>
@@ -115,7 +118,12 @@ if (isset($_POST['reserver'])) {
     </article>
 </main>
     <!----------------- Footer ----------------->
-    <?php include '../header-footer/footer.php'?>
+    <?php include '../header-footer/footer.php' ?>
     <!----------------- Footer ----------------->
 </body>
 </html>
+<?php
+} else {
+    header('Location: index.php');
+}
+?>
