@@ -34,7 +34,7 @@ if (isset($_SESSION['id']) != 0) { ?>
     }
 
 ?>
-
+<!DOCTYPE>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
